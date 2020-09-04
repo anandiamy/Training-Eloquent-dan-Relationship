@@ -16,6 +16,8 @@ namespace App{
  *
  * @property int $id
  * @property string|null $name
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Product[] $products
+ * @property-read int|null $products_count
  * @method static \Illuminate\Database\Eloquent\Builder|Category newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Category newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Category query()
@@ -31,11 +33,22 @@ namespace App{
  *
  * @property int $id
  * @property string|null $name
+ * @property int|null $view
+ * @property string|null $code
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Category[] $categories
+ * @property-read int|null $categories_count
+ * @property-read mixed $jumlah
+ * @property-read \App\ProductDetail|null $productDetail
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\ProductPhoto[] $productPhotos
+ * @property-read int|null $product_photos_count
  * @method static \Illuminate\Database\Eloquent\Builder|Product newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Product newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product popular()
  * @method static \Illuminate\Database\Eloquent\Builder|Product query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereView($value)
  */
 	class Product extends \Eloquent {}
 }
@@ -47,6 +60,7 @@ namespace App{
  * @property int $id
  * @property int|null $product_id
  * @property int|null $price
+ * @property-read \App\Product|null $product
  * @method static \Illuminate\Database\Eloquent\Builder|ProductDetail newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductDetail newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductDetail query()
@@ -55,6 +69,24 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|ProductDetail whereProductId($value)
  */
 	class ProductDetail extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\ProductPhoto
+ *
+ * @property int $id
+ * @property int|null $product_id
+ * @property int|null $width
+ * @property-read \App\Product|null $product
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductPhoto newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductPhoto newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductPhoto query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductPhoto whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductPhoto whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductPhoto whereWidth($value)
+ */
+	class ProductPhoto extends \Eloquent {}
 }
 
 namespace App{

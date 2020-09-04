@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Product;
+use App\ProductDetail;
+use App\ProductPhoto;
+use DB;
 use Illuminate\Http\Request;
 
 class TrainingController extends Controller
@@ -14,9 +18,36 @@ class TrainingController extends Controller
      */
     public function index()
     {
-        $product = Product::all();
+        DB::enableQueryLog();
+
+//        $productPhoto = ProductPhoto::find(1);
+//        echo $productPhoto->product->name;
+//        exit();
+
+//        $products = Category::find(1)->products;
+//        foreach ($products as $item) {
+//            echo $item->pivot->created_at;
+//        }
+//        dd();
+
+        // Lazy Loading
+//        $products = Product::all();
+//        foreach ($products as $product) {
+//            echo $product->productDetail->name;
+//        }
+
+        // Eager Loading
+//        $products = Product::with(['productDetail'])->get();
+//        foreach ($products as $product) {
+//            echo $product->productDetail->name;
+//        }
+
+
+//        $product = (new Product())->popular()->get();
+        $product = Product::find(1)->view;
         dd($product);
 
+        dd(DB::getQueryLog());
     }
 
     /**
